@@ -1,0 +1,20 @@
+HOSPITAL BILLING STATEMENT
+
+Patient: Robert Williams
+Date of Service: January 15, 2025
+Facility: City General Hospital
+
+SERVICES PROVIDED:
+- Emergency Room Visit: $850.00
+- X-Ray (Chest): $320.00
+- Laboratory Tests: $180.00
+- Physician Consultation: $250.00
+
+DIAGNOSIS: Pneumonia (J18.9)
+
+TOTAL CHARGES: $1,600.00
+
+TREATMENT SUMMARY:
+Patient presented to ER with severe cough, fever, and difficulty breathing.
+Chest X-ray confirmed pneumonia. Prescribed antibiotics and discharged
+with follow-up instructions.

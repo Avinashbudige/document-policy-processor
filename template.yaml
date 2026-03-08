@@ -1,0 +1,166 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Document Policy Processor Lambda Function
+
+Globals:
+  Function:
+    Timeout: 300
+    MemorySize: 2048
+
+Parameters:
+  S3BucketName:
+    Type: String
+    Default: document-policy-processor-uploads
+    Description: S3 bucket for documents and embeddings
+  
+  DynamoDBTableJobs:
+    Type: String
+    Default: ProcessingJobs
+    Description: DynamoDB table for job tracking
+  
+  EmbeddingModel:
+    Type: String
+    Default: all-MiniLM-L6-v2
+    Description: Sentence-transformers model name
+  
+  LLMModel:
+    Type: String
+    Default: gpt-3.5-turbo
+    Description: OpenAI model for exclusion checking
+  
+  OpenAIAPIKey:
+    Type: String
+    NoEcho: true
+    Description: OpenAI API key (use AWS Secrets Manager in production)
+
+Resources:
+  # API Gateway REST API with explicit configuration
+  DocumentPolicyProcessorApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'GET,POST,OPTIONS'"
+        AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+        AllowOrigin: "'*'"
+      Auth:
+        ApiKeyRequired: true
+        UsagePlan:
+          CreateUsagePlan: PER_API
+          Description: Usage plan for Document Policy Processor API
+          Quota:
+            Limit: 1000
+            Period: DAY
+          Throttle:
+            BurstLimit: 20
+            RateLimit: 10
+
+  DocumentPolicyProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: DocumentPolicyProcessor
+      PackageType: Image
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: !Ref S3BucketName
+          DYNAMODB_TABLE_JOBS: !Ref DynamoDBTableJobs
+          EMBEDDING_MODEL: !Ref EmbeddingModel
+          LLM_MODEL: !Ref LLMModel
+          OPENAI_API_KEY: !Ref OpenAIAPIKey
+      Policies:
+        - S3ReadPolicy:
+            BucketName: !Ref S3BucketName
+        - S3WritePolicy:
+            BucketName: !Ref S3BucketName
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DynamoDBTableJobs
+        - Statement:
+          - Effect: Allow
+            Action:
+              - textract:DetectDocumentText
+              - textract:AnalyzeDocument
+            Resource: '*'
+      Events:
+        UploadUrl:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DocumentPolicyProcessorApi
+            Path: /api/upload-url
+            Method: post
+            Auth:
+              ApiKeyRequired: true
+        ProcessDocument:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DocumentPolicyProcessorApi
+            Path: /api/process-document
+            Method: post
+            Auth:
+              ApiKeyRequired: true
+        GetStatus:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DocumentPolicyProcessorApi
+            Path: /api/status/{jobId}
+            Method: get
+            Auth:
+              ApiKeyRequired: true
+        GetResults:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DocumentPolicyProcessorApi
+            Path: /api/results/{jobId}
+            Method: get
+            Auth:
+              ApiKeyRequired: true
+        HealthCheck:
+          Type: Api
+          Properties:
+            RestApiId: !Ref DocumentPolicyProcessorApi
+            Path: /api/health
+            Method: get
+            Auth:
+              ApiKeyRequired: false
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: .
+      DockerTag: latest
+
+Outputs:
+  DocumentPolicyProcessorFunction:
+    Description: Document Policy Processor Lambda Function ARN
+    Value: !GetAtt DocumentPolicyProcessorFunction.Arn
+  
+  DocumentPolicyProcessorFunctionIamRole:
+    Description: Implicit IAM Role created for function
+    Value: !GetAtt DocumentPolicyProcessorFunctionRole.Arn
+  
+  ApiEndpoint:
+    Description: API Gateway endpoint base URL
+    Value: !Sub 'https://${DocumentPolicyProcessorApi}.execute-api.${AWS::Region}.amazonaws.com/Prod'
+  
+  UploadUrlEndpoint:
+    Description: POST endpoint for generating presigned upload URLs
+    Value: !Sub 'https://${DocumentPolicyProcessorApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/upload-url'
+  
+  ProcessDocumentEndpoint:
+    Description: POST endpoint for document processing
+    Value: !Sub 'https://${DocumentPolicyProcessorApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/process-document'
+  
+  StatusEndpoint:
+    Description: GET endpoint for job status
+    Value: !Sub 'https://${DocumentPolicyProcessorApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/status/{jobId}'
+  
+  ResultsEndpoint:
+    Description: GET endpoint for job results
+    Value: !Sub 'https://${DocumentPolicyProcessorApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/results/{jobId}'
+  
+  HealthEndpoint:
+    Description: GET endpoint for health check
+    Value: !Sub 'https://${DocumentPolicyProcessorApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/api/health'
+  
+  ApiKey:
+    Description: API Key ID (retrieve value from AWS Console)
+    Value: !Ref DocumentPolicyProcessorApiApiKey

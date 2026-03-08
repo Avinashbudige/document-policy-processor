@@ -1,0 +1,32 @@
+MEDICAL REPORT
+
+Patient: John Doe
+Date: January 20, 2025
+Provider: Dr. Sarah Johnson, MD
+
+DIAGNOSIS:
+Type 2 Diabetes Mellitus (E11.9)
+
+CLINICAL FINDINGS:
+Patient presents with elevated blood glucose levels (HbA1c: 8.2%). 
+Symptoms include increased thirst, frequent urination, and fatigue.
+Physical examination reveals no acute complications.
+
+TREATMENT PLAN:
+1. Insulin therapy - Lantus 20 units daily
+2. Blood glucose monitoring - 4 times daily
+3. Dietary modifications - low carbohydrate diet
+4. Regular follow-up appointments every 3 months
+
+MEDICATIONS PRESCRIBED:
+- Insulin glargine (Lantus) 100 units/mL
+- Metformin 500mg twice daily
+- Blood glucose test strips (100 count)
+
+RECOMMENDATIONS:
+Patient requires ongoing diabetes management including insulin therapy,
+regular monitoring, and lifestyle modifications. Coverage for diabetic
+supplies and medications is essential for proper disease management.
+
+Dr. Sarah Johnson, MD
+License #: MD-12345

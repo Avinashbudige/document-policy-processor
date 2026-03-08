@@ -1,0 +1,16 @@
+PRESCRIPTION
+
+Patient: Jane Smith
+Date: January 22, 2025
+Provider: Dr. Michael Chen, MD
+
+Rx:
+1. Lisinopril 10mg - Take 1 tablet daily for hypertension
+2. Atorvastatin 20mg - Take 1 tablet daily for cholesterol
+3. Aspirin 81mg - Take 1 tablet daily for cardiovascular protection
+
+Diagnosis: Hypertension (I10), Hyperlipidemia (E78.5)
+
+Refills: 3 months supply with 2 refills
+
+Dr. Michael Chen, MD

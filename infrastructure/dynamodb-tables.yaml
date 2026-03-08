@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'DynamoDB tables for Document Policy Processor'
+
+Resources:
+  PoliciesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: Policies
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: policy_id
+          AttributeType: S
+        - AttributeName: category
+          AttributeType: S
+      KeySchema:
+        - AttributeName: policy_id
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: CategoryIndex
+          KeySchema:
+            - AttributeName: category
+              KeyType: HASH
+          Projection:
+            ProjectionType: ALL
+      Tags:
+        - Key: Project
+          Value: DocumentPolicyProcessor
+        - Key: Environment
+          Value: dev
+
+  ProcessingJobsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: ProcessingJobs
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: job_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: job_id
+          KeyType: HASH
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      Tags:
+        - Key: Project
+          Value: DocumentPolicyProcessor
+        - Key: Environment
+          Value: dev
+
+Outputs:
+  PoliciesTableName:
+    Description: Name of the Policies table
+    Value: !Ref PoliciesTable
+    Export:
+      Name: !Sub '${AWS::StackName}-PoliciesTable'
+  
+  PoliciesTableArn:
+    Description: ARN of the Policies table
+    Value: !GetAtt PoliciesTable.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-PoliciesTableArn'
+  
+  ProcessingJobsTableName:
+    Description: Name of the ProcessingJobs table
+    Value: !Ref ProcessingJobsTable
+    Export:
+      Name: !Sub '${AWS::StackName}-ProcessingJobsTable'
+  
+  ProcessingJobsTableArn:
+    Description: ARN of the ProcessingJobs table
+    Value: !GetAtt ProcessingJobsTable.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-ProcessingJobsTableArn'
