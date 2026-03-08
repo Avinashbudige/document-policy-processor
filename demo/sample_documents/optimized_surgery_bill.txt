@@ -1,0 +1,65 @@
+HOSPITAL SURGICAL BILLING STATEMENT
+
+Patient Name: Jennifer Martinez
+Patient ID: JM-2025-3456
+Date of Service: March 5-8, 2026
+Facility: Metropolitan Medical Center
+
+DIAGNOSIS:
+Acute Appendicitis (K35.80)
+Peritonitis (K65.0)
+
+SURGICAL PROCEDURE:
+Emergency Laparoscopic Appendectomy
+
+SERVICES PROVIDED:
+
+Pre-Operative Care
+- Surgical Consultation                    $450.00
+- Pre-operative Assessment                 $280.00
+- Anesthesia Consultation                  $220.00
+
+Surgical Services
+- Operating Room Charges (3 hours)         $8,500.00
+- Laparoscopic Appendectomy                $12,000.00
+- General Anesthesia                       $2,800.00
+- Surgical Supplies and Equipment          $1,850.00
+- Pathology (Appendix Examination)         $420.00
+
+Hospitalization
+- Hospital Admission                       $1,200.00
+- Semi-Private Room (3 nights)             $3,600.00
+- Nursing Care                             $2,400.00
+- IV Therapy and Medications               $980.00
+- Post-operative Monitoring                $650.00
+
+Diagnostic Tests
+- CT Scan - Abdomen                        $1,650.00
+- Complete Blood Count                     $95.00
+- Urinalysis                               $45.00
+- Chest X-Ray                              $280.00
+
+TOTAL CHARGES: $37,420.00
+
+TREATMENT SUMMARY:
+Patient presented with acute abdominal pain. CT scan confirmed acute
+appendicitis with risk of rupture. Emergency laparoscopic appendectomy
+performed successfully. Patient hospitalized for 3 days post-surgery
+for recovery and monitoring. No complications. Discharged in stable
+condition.
+
+INSURANCE NOTES:
+Emergency surgery for acute appendicitis. All services including
+hospitalization, surgery, and related care are medically necessary
+and should be covered under basic health insurance surgical and
+hospitalization benefits.
+
+DISCHARGE INSTRUCTIONS:
+Follow-up appointment in 2 weeks. No heavy lifting for 4 weeks.
+
+Surgeon: Dr. Patricia Anderson, MD
+General Surgery
+License: MD-23456
+
+Anesthesiologist: Dr. Robert Kim, MD
+License: MD-34567

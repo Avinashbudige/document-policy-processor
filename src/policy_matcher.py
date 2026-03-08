@@ -65,7 +65,7 @@ class PolicyMatcher:
         self, 
         query_embedding: np.ndarray, 
         top_k: int = 5,
-        threshold: float = 0.6
+        threshold: float = 0.3  # Lowered from 0.6 for better matching
     ) -> List[PolicyMatch]:
         """
         Find top-k most similar policies using cosine similarity.

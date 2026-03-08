@@ -1,0 +1,54 @@
+MEDICAL BILLING STATEMENT
+
+Patient Name: Sarah Johnson
+Patient ID: DJ-2025-4567
+Date of Service: March 8, 2026
+Provider: Diabetes Care Center
+
+DIAGNOSIS:
+Type 2 Diabetes Mellitus (E11.9)
+Diabetic Neuropathy (E11.42)
+
+SERVICES PROVIDED:
+
+Diabetes Management Consultation
+- Endocrinologist Visit                    $350.00
+- Diabetes Education Session               $150.00
+- Nutritional Counseling                   $120.00
+
+Diabetes Supplies
+- Insulin Glargine (Lantus) 100u/mL        $450.00
+- Blood Glucose Test Strips (300 count)    $180.00
+- Continuous Glucose Monitor (CGM)         $850.00
+- Insulin Syringes (100 count)             $45.00
+- Lancets (200 count)                      $35.00
+
+Laboratory Tests
+- HbA1c Test                               $85.00
+- Fasting Blood Glucose                    $40.00
+- Lipid Panel                              $95.00
+- Kidney Function Tests                    $120.00
+
+Specialist Visits
+- Ophthalmology (Diabetic Eye Exam)        $280.00
+- Podiatry (Foot Care)                     $180.00
+
+TOTAL CHARGES: $2,980.00
+
+TREATMENT SUMMARY:
+Patient requires ongoing diabetes management including insulin therapy,
+continuous glucose monitoring, regular specialist visits, and diabetic
+supplies. This is essential for proper disease management and prevention
+of complications.
+
+INSURANCE NOTES:
+Patient has diabetes care coverage. All services related to diabetes
+management, insulin, monitoring supplies, and specialist visits should
+be covered under diabetes care plan.
+
+NEXT APPOINTMENT:
+Follow-up in 3 months for diabetes management review.
+
+Provider: Dr. Emily Rodriguez, MD
+Endocrinology Specialist
+License: MD-78901

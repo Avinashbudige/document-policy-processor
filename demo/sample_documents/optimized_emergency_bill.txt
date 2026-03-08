@@ -1,0 +1,62 @@
+EMERGENCY DEPARTMENT BILLING STATEMENT
+
+Patient Name: Michael Chen
+Patient ID: MC-2025-8901
+Date of Service: March 7, 2026
+Facility: City General Hospital - Emergency Department
+
+CHIEF COMPLAINT:
+Severe chest pain, difficulty breathing
+
+DIAGNOSIS:
+Acute Myocardial Infarction (I21.9) - Heart Attack
+Coronary Artery Disease (I25.10)
+
+EMERGENCY SERVICES PROVIDED:
+
+Emergency Room Care
+- Level 5 Emergency Visit (Critical)       $2,850.00
+- Emergency Physician Services             $1,200.00
+- Cardiac Monitoring (Continuous)          $450.00
+
+Diagnostic Tests
+- ECG/EKG (Electrocardiogram)              $320.00
+- Chest X-Ray (2 views)                    $380.00
+- CT Scan - Chest (with contrast)          $1,850.00
+- Cardiac Enzyme Tests (Troponin)          $280.00
+- Complete Blood Count                     $95.00
+
+Emergency Treatment
+- IV Therapy and Medications               $680.00
+- Oxygen Therapy                           $240.00
+- Cardiac Medications (Emergency)          $520.00
+
+Hospitalization
+- Emergency Admission to ICU               $3,200.00
+- ICU Care (24 hours)                      $4,500.00
+
+Surgical Intervention
+- Emergency Cardiac Catheterization        $8,500.00
+- Coronary Angioplasty                     $12,000.00
+- Stent Placement (2 stents)               $15,000.00
+
+TOTAL CHARGES: $52,065.00
+
+TREATMENT SUMMARY:
+Patient presented to emergency department with acute chest pain and
+shortness of breath. Immediate cardiac evaluation revealed acute
+myocardial infarction requiring emergency intervention. Patient
+underwent emergency cardiac catheterization with angioplasty and
+stent placement. Admitted to ICU for post-procedure monitoring.
+
+INSURANCE NOTES:
+This was a life-threatening emergency requiring immediate hospitalization,
+surgery, and emergency care. All services are medically necessary and
+should be covered under basic health insurance emergency care provisions.
+
+DISCHARGE STATUS:
+Stable, transferred to cardiac care unit for continued monitoring.
+
+Attending Physician: Dr. James Wilson, MD
+Emergency Medicine & Cardiology
+License: MD-45678
