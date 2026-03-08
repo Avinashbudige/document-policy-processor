@@ -1,0 +1,117 @@
+================================================================================
+  DEPLOYMENT CHECKLIST - Follow in Order
+================================================================================
+
+STEP 1: CREATE GITHUB REPOSITORY (3 minutes)
+□ Go to: https://github.com/new
+□ Repository name: document-policy-processor
+□ Visibility: Public
+□ Do NOT check any initialization boxes
+□ Click "Create repository"
+□ Note your GitHub username: _________________
+
+STEP 2: PUSH TO GITHUB (2 minutes)
+□ Open terminal in document-policy-processor folder
+□ Run: git remote add origin https://github.com/YOUR_USERNAME/document-policy-processor.git
+   (Replace YOUR_USERNAME with your actual username!)
+□ Run: git branch -M main
+□ Run: git push -u origin main
+□ If asked for password, use Personal Access Token from:
+   https://github.com/settings/tokens
+□ Verify files appear on GitHub
+
+STEP 3: DEPLOY TO STREAMLIT CLOUD (5 minutes)
+□ Go to: https://share.streamlit.io/
+□ Sign in with GitHub
+□ Click "New app"
+□ Repository: YOUR_USERNAME/document-policy-processor
+□ Branch: main
+□ Main file: frontend/app.py
+□ App URL: Choose a name (e.g., insurance-policy-ai)
+□ Advanced settings → Python version: 3.11
+□ Click "Deploy!"
+□ Wait 5-10 minutes
+
+STEP 4: CONFIGURE SECRETS (2 minutes)
+□ Wait for "Your app is live!"
+□ Click menu (⋮) on your app
+□ Settings → Secrets
+□ Paste:
+  [api]
+  base_url = "https://bmi41mg6uf.execute-api.us-east-1.amazonaws.com/prod"
+  api_key = "9wx9nHe2NV5vSAOyRps9l3c7PpQ19OttaJqHw4mw"
+□ Click "Save"
+□ Wait for app to restart (1-2 minutes)
+
+STEP 5: TEST YOUR PUBLIC URL (3 minutes)
+□ Open: https://YOUR_APP_NAME.streamlit.app
+□ Upload a document
+□ Enter symptoms: "Diabetes, insulin therapy"
+□ Click "Process Document"
+□ Wait 30-90 seconds (first request)
+□ Verify results appear
+
+STEP 6: SUBMIT TO HACKATHON
+□ Copy your public URL: https://YOUR_APP_NAME.streamlit.app
+□ Copy your GitHub URL: https://github.com/YOUR_USERNAME/document-policy-processor
+□ Fill out hackathon submission form
+□ Submit!
+
+================================================================================
+YOUR URLS (Fill these in):
+================================================================================
+
+GitHub Repository: https://github.com/_________________/document-policy-processor
+
+Public URL: https://_________________.streamlit.app
+
+================================================================================
+SUBMISSION TEXT (Copy this):
+================================================================================
+
+Working Prototype Link: https://YOUR_APP_NAME.streamlit.app
+
+Description:
+AI-powered insurance policy processor that analyzes medical documents 
+and automatically matches them with relevant insurance policies using 
+machine learning (Sentence Transformers) and AI (Mistral AI).
+
+Tech Stack: Python, Streamlit, Sentence Transformers, Mistral AI, 
+AWS Lambda, S3, DynamoDB, API Gateway
+
+Test Instructions:
+1. Visit the URL above
+2. Upload a medical document
+3. Enter symptoms: "Diabetes, insulin therapy"
+4. Click "Process Document"
+5. View AI-generated recommendations
+
+Availability: 30+ days, 24/7 uptime
+
+================================================================================
+TROUBLESHOOTING:
+================================================================================
+
+GitHub push fails?
+→ Use Personal Access Token: https://github.com/settings/tokens
+
+Streamlit deployment fails?
+→ Check Python version is 3.11 in Advanced settings
+
+App shows errors?
+→ Check secrets are configured correctly
+
+Lambda timeout?
+→ Normal for first request (30-90 seconds), try again
+
+================================================================================
+DONE! ✅
+================================================================================
+
+Total time: ~15 minutes
+Cost: $0 (free tier)
+Availability: 30+ days
+
+Good luck with your hackathon! 🚀
+
+================================================================================

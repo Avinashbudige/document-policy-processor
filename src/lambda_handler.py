@@ -22,6 +22,7 @@ import uuid
 from typing import Dict, Any, Optional
 from pathlib import Path
 import tempfile
+from decimal import Decimal
 
 import boto3
 from botocore.exceptions import ClientError
@@ -932,6 +933,30 @@ def cleanup_temp_file(file_path: Optional[str]) -> None:
             logger.warning(f"Failed to clean up temporary file: {str(e)}")
 
 
+def convert_decimal(obj):
+    """
+    Convert DynamoDB Decimal types to JSON-serializable types.
+    
+    Args:
+        obj: Object that may contain Decimal types
+        
+    Returns:
+        Object with Decimals converted to int or float
+    """
+    if isinstance(obj, list):
+        return [convert_decimal(item) for item in obj]
+    elif isinstance(obj, dict):
+        return {key: convert_decimal(value) for key, value in obj.items()}
+    elif isinstance(obj, Decimal):
+        # Convert to int if it's a whole number, otherwise float
+        if obj % 1 == 0:
+            return int(obj)
+        else:
+            return float(obj)
+    else:
+        return obj
+
+
 def create_response(status_code: int, body: Dict[str, Any]) -> Dict[str, Any]:
     """
     Create API Gateway response.
@@ -943,6 +968,9 @@ def create_response(status_code: int, body: Dict[str, Any]) -> Dict[str, Any]:
     Returns:
         API Gateway response format
     """
+    # Convert any Decimal types to JSON-serializable types
+    body = convert_decimal(body)
+    
     return {
         'statusCode': status_code,
         'headers': {
