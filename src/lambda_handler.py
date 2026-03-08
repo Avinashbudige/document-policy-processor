@@ -760,14 +760,17 @@ def match_policies(text: str) -> list:
         # Generate embedding
         embedding = policy_matcher.generate_embedding(text)
         
+        # Get threshold from environment variable (default 0.3 for better matching)
+        threshold = float(os.environ.get('SIMILARITY_THRESHOLD', '0.3'))
+        
         # Find similar policies
         matches = policy_matcher.find_similar_policies(
             embedding,
             top_k=5,
-            threshold=0.6
+            threshold=threshold
         )
         
-        logger.info(f"Found {len(matches)} policy matches")
+        logger.info(f"Found {len(matches)} policy matches (threshold: {threshold})")
         
         return matches
         

@@ -1,0 +1,94 @@
+digraph "Document Policy Processor - AWS Architecture" {
+	graph [bgcolor=white fontcolor="#2D3436" fontname="Sans-Serif" fontsize=16 label="Document Policy Processor - AWS Architecture" nodesep=0.8 pad=0.5 rankdir=TB ranksep=1.0 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=12 height=1.2 imagescale=true labelloc=b shape=box style=rounded width=1.2]
+	edge [color="#7B8894" fontsize=10]
+	"18d43b4b9dc0487583c4d9b8aa0d071a" [label="End User
+(Browser)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/client\users.png" shape=none]
+	subgraph "cluster_Frontend Layer" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Frontend Layer" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"29882b6ac9db42c089e4cf91dfe0b06c" [label="Streamlit Cloud
+(Python Web App)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/compute\server.png" shape=none]
+	}
+	subgraph "cluster_API Gateway Layer" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="API Gateway Layer" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"703f8aec78c3432286e82ee52319f490" [label="API Gateway
+(REST API)
+bmi41mg6uf" height=2.7 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/network\api-gateway.png" shape=none]
+	}
+	subgraph "cluster_Compute Layer" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Compute Layer" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		subgraph "cluster_Lambda Container
+(3GB, 900s timeout)" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="Lambda Container
+(3GB, 900s timeout)" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			f7f730d7522e497a89d267b6db93a729 [label="DocumentPolicyProcessor
+(Python 3.11)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/compute\lambda.png" shape=none]
+			subgraph "cluster_Processing Components" {
+				graph [bgcolor="#ECE8F6" fontname="Sans-Serif" fontsize=12 label="Processing Components" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+				"77c1ece6a0994a67918d742488b8bf3d" [label="Text Extractor
+(Tesseract OCR)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/compute\server.png" shape=none]
+				"36f9073bf37340369a67298ee8dfbce8" [label="Policy Matcher
+(Sentence Transformers)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/compute\server.png" shape=none]
+				"1b270b1292cf4711999ddac68680475a" [label="LLM Checker
+(Mistral AI)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/compute\server.png" shape=none]
+				a9bfbc1c1c6a467ea70b7353e942ace2 [label="Recommendation
+Engine" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/compute\server.png" shape=none]
+			}
+		}
+	}
+	subgraph "cluster_Storage Layer" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Storage Layer" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		d582870044f1463fa80408661c5f6f4d [label="S3 Bucket
+document-policy-
+processor-uploads" height=2.7 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/storage\simple-storage-service-s3.png" shape=none]
+		subgraph "cluster_DynamoDB Tables" {
+			graph [bgcolor="#EBF3E7" fontname="Sans-Serif" fontsize=12 label="DynamoDB Tables" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+			"9bea353c59134b95bb0d3528f40c14bb" [label="Policies
+Table" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/database\dynamodb.png" shape=none]
+			"6e73a4d709aa4df8ba3af8f79b8ab409" [label="ProcessingJobs
+Table" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/database\dynamodb.png" shape=none]
+		}
+		"886694908e474de59ac30069027b9352" [label="ECR
+Container
+Registry" height=2.7 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/compute\ec2-container-registry.png" shape=none]
+	}
+	subgraph "cluster_External Services" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="External Services" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"7fd9e6da320349e3911d346592afca1d" [label="Mistral AI API
+(mistral-small-latest)" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/onprem/compute\server.png" shape=none]
+	}
+	subgraph "cluster_Monitoring & Logging" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Monitoring & Logging" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"270525cedddd4c1ba0efb3c79b7c0795" [label="CloudWatch
+Logs & Metrics" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/management\cloudwatch.png" shape=none]
+	}
+	subgraph "cluster_Security & IAM" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="Security & IAM" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"0a2fafadea994047a86470b684c391c9" [label="IAM Roles
+& Policies" height=2.3 image="C:\Users\Avinash\AppData\Local\Programs\Python\Python312\Lib\site-packages\resources/aws/security\identity-and-access-management-iam.png" shape=none]
+	}
+	"18d43b4b9dc0487583c4d9b8aa0d071a" -> "29882b6ac9db42c089e4cf91dfe0b06c" [label=HTTPS dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"29882b6ac9db42c089e4cf91dfe0b06c" -> "703f8aec78c3432286e82ee52319f490" [label="REST API
+X-Api-Key" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"703f8aec78c3432286e82ee52319f490" -> f7f730d7522e497a89d267b6db93a729 [label="Lambda Proxy" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f7f730d7522e497a89d267b6db93a729 -> d582870044f1463fa80408661c5f6f4d [label="Get/Put
+Documents" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f7f730d7522e497a89d267b6db93a729 -> "9bea353c59134b95bb0d3528f40c14bb" [label="Query/Update
+Policies" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f7f730d7522e497a89d267b6db93a729 -> "6e73a4d709aa4df8ba3af8f79b8ab409" [label="Query/Update
+Jobs" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f7f730d7522e497a89d267b6db93a729 -> "886694908e474de59ac30069027b9352" [label="Pull Image" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f7f730d7522e497a89d267b6db93a729 -> "7fd9e6da320349e3911d346592afca1d" [label="API Call
+Exclusion Check" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	f7f730d7522e497a89d267b6db93a729 -> "77c1ece6a0994a67918d742488b8bf3d" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"77c1ece6a0994a67918d742488b8bf3d" -> "36f9073bf37340369a67298ee8dfbce8" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"36f9073bf37340369a67298ee8dfbce8" -> "1b270b1292cf4711999ddac68680475a" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"1b270b1292cf4711999ddac68680475a" -> a9bfbc1c1c6a467ea70b7353e942ace2 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"703f8aec78c3432286e82ee52319f490" -> "270525cedddd4c1ba0efb3c79b7c0795" [label=Logs dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	f7f730d7522e497a89d267b6db93a729 -> "270525cedddd4c1ba0efb3c79b7c0795" [label="Logs & Metrics" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	d582870044f1463fa80408661c5f6f4d -> "270525cedddd4c1ba0efb3c79b7c0795" [label=Metrics dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	"9bea353c59134b95bb0d3528f40c14bb" -> "270525cedddd4c1ba0efb3c79b7c0795" [label=Metrics dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	"6e73a4d709aa4df8ba3af8f79b8ab409" -> "270525cedddd4c1ba0efb3c79b7c0795" [label=Metrics dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	f7f730d7522e497a89d267b6db93a729 -> "0a2fafadea994047a86470b684c391c9" [label="Assume Role" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+	"703f8aec78c3432286e82ee52319f490" -> "0a2fafadea994047a86470b684c391c9" [label="Assume Role" dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=dashed]
+}

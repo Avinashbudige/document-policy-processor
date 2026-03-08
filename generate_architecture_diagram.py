@@ -1,6 +1,17 @@
 """
 Generate AWS Architecture Diagram for Document Policy Processor
 
+⚠️ IMPORTANT: This script requires Graphviz to be installed on your system.
+
+Windows Installation:
+1. Download Graphviz: https://graphviz.org/download/
+2. Install and add to PATH
+3. Restart terminal
+
+Alternative (Easier):
+- Use the Mermaid diagrams in ARCHITECTURE_MERMAID.md (no installation needed!)
+- View directly on GitHub or export from https://mermaid.live/
+
 This script creates a visual architecture diagram using the diagrams library.
 Install: pip install diagrams
 
@@ -8,16 +19,14 @@ Usage: python generate_architecture_diagram.py
 """
 
 from diagrams import Diagram, Cluster, Edge
-from diagrams.aws.compute import Lambda
+from diagrams.aws.compute import Lambda, ECR
 from diagrams.aws.network import APIGateway
 from diagrams.aws.storage import S3
 from diagrams.aws.database import Dynamodb
-from diagrams.aws.devtools import ECR
 from diagrams.aws.management import Cloudwatch
 from diagrams.aws.security import IAM
 from diagrams.onprem.client import Users
 from diagrams.onprem.compute import Server
-from diagrams.programming.framework import React
 
 # Diagram configuration
 graph_attr = {
